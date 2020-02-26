@@ -103,6 +103,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ValidadorValorObrigatorioExtensions.cs</LastGenOutput>
     </Content>
+    <None Include="ValidacaoFluente.nuspec" />
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
   </ItemGroup>
   <ItemGroup>

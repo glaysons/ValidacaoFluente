@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+	<metadata minClientVersion="1.00">
+		<id>ValidacaoFluente</id>
+		<version>$version$</version>
+		<title>Validação Fluente</title>
+		<authors>Glayson Sergio</authors>
+		<owners>Glayson Sergio</owners>
+		<projectUrl>https://github.com/glaysons/ValidacaoFluente</projectUrl>
+		<iconUrl>https://github.com/glaysons/ValidacaoFluente/blob/master/ValidacaoFluenteIcon.min.png?raw=true</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>ValidacaoFluente é um pacote de ferramentas para escrita de validações fluentes.</description>
+		<copyright>Copyright © Glayson Sergio 2019</copyright>
+		<tags>ValidacaoFluente validacao validation fluente fluency</tags>
+	</metadata>
+</package>
