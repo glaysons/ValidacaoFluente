@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{41E63B6B-E655-4D9A-B9F3-5F08F1BEB70A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ValidacaoFluente</RootNamespace>
+    <AssemblyName>ValidacaoFluente</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constantes.cs" />
+    <Compile Include="Exceptions\ExpressaoComNomeDePropriedadeInvalidaException.cs" />
+    <Compile Include="Exceptions\NaoFoiPossivelIdentificarValidadorPersonalizadoException.cs" />
+    <Compile Include="Exceptions\OpcaoDeEnumeracaoNaoDefinidaException.cs" />
+    <Compile Include="Exceptions\TipoInformadoNaoComparavelException.cs" />
+    <Compile Include="Exceptions\UtilizacaoDeOpcaoDeEnumEmDuplicidadeException.cs" />
+    <Compile Include="Exceptions\UtilizacaoDoSenaoDeEnumEmDuplicidadeException.cs" />
+    <Compile Include="Exceptions\ValidadorInvalidoException.cs" />
+    <Compile Include="Interfaces\IPersonalizacaoValidador.cs" />
+    <Compile Include="Interfaces\IValidadorFluente.cs" />
+    <Compile Include="Internals\ValidadorOpcaoEnum.cs" />
+    <Compile Include="Internals\Interfaces\IItemValidacao.cs" />
+    <Compile Include="Internals\Interfaces\IValidadorRaiz.cs" />
+    <Compile Include="Internals\ReflectionUtils.cs" />
+    <Compile Include="Internals\ValidadorEnum.cs" />
+    <Compile Include="Internals\ValidadorLogico.cs" />
+    <Compile Include="Interfaces\IValidadorCondicional.cs" />
+    <Compile Include="Interfaces\IValidadorOpcaoEnum.cs" />
+    <Compile Include="Interfaces\IValidadorCampoEnum.cs" />
+    <Compile Include="Interfaces\IValidadorPersonalizado.cs" />
+    <Compile Include="Interfaces\IValidadorValor.cs" />
+    <Compile Include="Internals\ValidadorPersonalizado.cs" />
+    <Compile Include="ValidadorBase.cs" />
+    <Compile Include="Extensions\ValidadorValorMenorExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorMaiorExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorMenorOuIgualExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorMaiorOuIgualExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorEntreExtensions.cs">
+      <DependentUpon>ValidadorValorEntreExtensions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Extensions\ValidadorEnumsExtensions.cs" />
+    <Compile Include="Internals\RegraParaValidacao.cs" />
+    <Compile Include="Internals\ValidadorRaiz.cs" />
+    <Compile Include="Internals\ValidadorCampo.cs" />
+    <Compile Include="Internals\ValidadorCondicional.cs" />
+    <Compile Include="Internals\ValidadorValor.cs" />
+    <Compile Include="Mensagem.cs" />
+    <Compile Include="Interfaces\IValidador.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\ValidadorValorDiferenteExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorMensagemExtensions.cs" />
+    <Compile Include="Extensions\ValidadorValorObrigatorioExtensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidadorValorObrigatorioExtensions.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ValidadorCondicionalExtensions.cs" />
+    <Compile Include="Extensions\ValidadorExtensions.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Extensions\ValidadorValorStringExtensions.cs" />
+    <Compile Include="Extensions\ValidadorPersonalizadoExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Extensions\ValidadorValorEntreExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ValidadorValorEntreExtensions.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\ValidadorValorObrigatorioExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ValidadorValorObrigatorioExtensions.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

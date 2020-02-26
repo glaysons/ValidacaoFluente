@@ -1,0 +1,52 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+
+	IEnumerable<(string, string)> ConsultarTipos()
+	{
+		yield return ("string", "!string.IsNullOrEmpty(validador.Valor)");
+		yield return ("int", "validador.Valor != 0");
+		yield return ("int?", "validador.Valor.HasValue && (validador.Valor != 0)");
+		yield return ("double", "validador.Valor != 0");
+		yield return ("double?", "validador.Valor.HasValue && (validador.Valor != 0)");
+		yield return ("decimal", "validador.Valor != 0");
+		yield return ("decimal?", "validador.Valor.HasValue && (validador.Valor != 0)");
+		yield return ("DateTime", "validador.Valor > DateTime.MinValue");
+		yield return ("DateTime?", "validador.Valor.HasValue && (validador.Valor > DateTime.MinValue)");
+		yield return ("bool?", "validador.Valor.HasValue");
+		yield return ("object", "(validador.Valor != null) && (validador.Valor != DBNull.Value)");
+		yield return ("K", "(validador.Valor != null) && (!(validador.Valor is ICollection v) || (v.Count != 0))");
+	}
+
+#>
+using System;
+using System.Collections;
+using ValidacaoFluente.Internals;
+
+namespace ValidacaoFluente
+{
+	public static class ValidadorValorObrigatorioExtensions
+	{
+
+<#
+
+	foreach ((string classe, string condicao) in ConsultarTipos())
+	{
+#>
+		public static IValidadorValor<T, <# Write(classe); #>> Obrigatorio<T<# if (string.Equals(classe, "K")) Write(", K"); #>>(this IValidadorValor<T, <# Write(classe); #>> sender)
+		{
+			if (!(sender is ValidadorValor<T, <# Write(classe); #>> validador))
+				throw new Exceptions.ValidadorInvalidoException();
+			validador.AdicionarValidacao(() => (<# Write(condicao); #>), 
+				consultarMensagem: c => c.CampoObrigatorio);
+			return sender;
+		}
+
+<#
+	}
+#>
+	}
+}

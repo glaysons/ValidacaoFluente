@@ -1,0 +1,48 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+
+	IEnumerable<(string, string)> ConsultarTipos()
+	{
+		yield return ("int", "validador.Valor == 0");
+		yield return ("double", "validador.Valor == 0");
+		yield return ("decimal", "validador.Valor == 0");
+		yield return ("DateTime", "validador.Valor == null");
+		yield return ("IComparable", "validador.Valor == null");
+	}
+
+#>
+using System;
+using ValidacaoFluente.Internals;
+
+namespace ValidacaoFluente
+{
+	public static class ValidadorValorEntreExtensions
+	{
+
+<#
+
+	foreach ((string classe, string condicao) in ConsultarTipos())
+	{
+#>
+		public static IValidadorValor<T, <# Write(classe); #>> Entre<T<# if (string.Equals(classe, "K")) Write(", K"); #>>(this IValidadorValor<T, <# Write(classe); #>> sender, <# Write(classe); #> de, <# Write(classe); #> ate)
+		{
+			if (!(sender is ValidadorValor<T, <# Write(classe); #>> validador))
+				throw new Exceptions.ValidadorInvalidoException();
+
+			validador.AdicionarValidacao(() => 
+				(<# Write(condicao); #>) || 
+				((validador.Valor is IComparable c) && (c.CompareTo(de) >= 0) && (c.CompareTo(ate) <= 0)), 
+				consultarMensagem: c => c.CampoObrigatorio);
+
+			return sender;
+		}
+
+<#
+	}
+#>
+	}
+}
