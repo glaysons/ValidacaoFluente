@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ValidacaoFluente")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("ValidacaoFluente é um pacote de ferramentas para escrita de validações fluentes")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ValidacaoFluente")]
